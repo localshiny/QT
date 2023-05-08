@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<RCC>
+    <qresource prefix="/image">
+        <file alias="images/back.png">images/back.png</file>
+        <file alias="images/forward.png">images/forward.png</file>
+        <file alias="images/hide.png">images/hide.png</file>
+        <file alias="images/logo.png">images/logo.png</file>
+        <file alias="images/reload.png">images/reload.png</file>
+        <file alias="images/show.png">images/show.png</file>
+        <file alias="images/small.png">images/small.png</file>
+        <file alias="images/stop.png">images/stop.png</file>
+        <file alias="images/large.png">images/large.png</file>
+    </qresource>
+    <qresource prefix="/qtwebchannel">
+        <file alias="qwebchannel.js">qwebchannel.js</file>
+        <file alias="autoinstall.js">autoinstall.js</file>
+    </qresource>
+</RCC>

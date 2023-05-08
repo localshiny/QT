@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My space</title>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/css/fonts.css" />
+    <link rel="icon" type="image/x-icon" href="static/img/favicon.ico">
+    <style>
+        .myButton2 {
+            font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+            font-size: 14px;
+            background-color: #254577;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            width: 70px;
+            height: 30px;
+            text-transform: capitalize;
+            box-shadow: none;
+            outline: 0 none;
+            transition: all 0.5s ease 0s;
+        }
+
+        #URLText {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            z-index: -10;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function deletefuc(pak_id) {
+            }
+    </script>
+
+    <script type="text/javascript">
+	    function runfuc(pak_id) {
+            }
+        </script>
+    </head>
+    <body>
+        <input type='text' id='URLText'>
+        <main class="">
+            <h2>    
+                <div>      
+                
+                    <span class='title' style="display: inline;">My Space</span>
+                    <div style="display:inline;float:right;">
+                        <a ><img src="static/img/rightArrow.png" alt="rightArrow" title="rightArrow" width="15em"/></a>
+                        <a ><img src="static/img/rightArrow.png" alt="rightArrow" title="rightArrow" width="15em"/></a>
+                        <a href="%HOMEPAGE%/apps" title="LocalShiny">Click here to install apps.</a>
+                    </div>
+                </div> 
+            </h2>
+            <p>The apps you installed from local file and LocalShiny's web are listed below, you can manage they safely and conveniently in this local page.</p>
+            <a href='%HOMEPAGE%/apps' title='LocalShiny' %VISIBILITY%>You have not installed any apps, click here to install new apps. </a>
+            <div class='item-list' id='itemlist'>
+                <!-- %FORSTART% -->
+                <section class='article-list'>
+                    <h1 class='list-meta'>
+                        <span> %APPNAME% </span>
+                        <button class='myButton2' style='background-color: #254577;' name='localshiny_run_app' id=%GROUP% onclick="runfuc('%GROUP%')">Run</button>
+                    </h1>
+                    <h2 class='list-meta' style='font-size: 1em;'>
+                        <span>ID: %GROUP% </span>
+                        <span>Version: %VERSION% </span>
+                    </h2>
+                    <div class='list-meta' style='border-bottom: 1px solid #ddd'></div>
+                    <div class='summary'>
+                            <p> %NEWPKGHOME% </p>
+                            <div style='text-align:right'>
+                                <button class='myButton2' style='background-color: #254577;' name='localshiny_delete_app' id=%GROUP% onclick="deletefuc('%GROUP%')">Delete</button>
+                            </div>
+                </section>
+                <!-- %FOREND% -->
+        </div>
+        </main>
+    </body>
+</html>

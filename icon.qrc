@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>images/back.png</file>
+        <file>images/forward.png</file>
+        <file>images/hide.png</file>
+        <file>images/logo.png</file>
+        <file>images/reload.png</file>
+        <file>images/show.png</file>
+        <file>images/small.png</file>
+        <file>images/stop.png</file>
+        <file>images/large.png</file>
+        <file>images/myspace.png</file>
+    </qresource>
+    <qresource prefix="/qtwebchannel">
+        <file>qwebchannel.js</file>
+        <file>autoinstall.js</file>
+    </qresource>
+    <qresource prefix="/dependence">
+        <file>dependence/install_pkg.R</file>
+    </qresource>
+</RCC>
