@@ -1,5 +1,0 @@
-#options(install.packages.check.source = "no")
-if (!requireNamespace("devtools",quietly =TRUE))
-    install.packages("devtools", repos="https://cloud.r-project.org", quiet = TRUE,type="binary")
-#if (!requireNamespace("localshiny", quietly = TRUE))
-devtools::install_github("localshiny/localshiny")
