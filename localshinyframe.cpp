@@ -859,6 +859,7 @@ void LocalShinyFrame::onInstallAppsFromLocal()
         connect(m_localinstallform,SIGNAL(outputSignal(QString,QString)),this,SLOT(onConsoleOutput(QString,QString)));
         connect(m_localinstallform,&localInstallForm::reloadSignal,[this]() {
                 m_webView->setHttpUserAgent();
+                setLocalHtml();
                 m_webView->reload();
         });
         m_localinstallform->m_appdataPath = m_appdataPath;
