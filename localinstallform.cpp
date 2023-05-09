@@ -324,13 +324,13 @@ void localInstallForm::onStartAppInstall(int taskno)
 {
     // install App
     m_record->writeLine("pkg",m_RHome,true,true,m_appxmler->getXmlMapElement("install_localShiny_localShinyVersion"));
-    m_AppInstaller=new TaskInstallApp(this);
+    m_appInstaller=new TaskInstallApp(this);
     emit outputSignal("Begin to install APP.","Info");
-    connect(m_AppInstaller,SIGNAL(taskFinishSignal(int,int)),this,SLOT(onFinishedProcess(int,int)));
-    connect(m_AppInstaller,SIGNAL(taskFinishSignal(int)),this,SLOT(onInstallAppFinished(int)));//onProcessFinished
-    connect(m_AppInstaller,SIGNAL(taskErrorSignal(int,QString)),this,SLOT(onProcessError(int,QString)));
-    connect(m_AppInstaller,SIGNAL(taskOutputSignal(int,QString,QString)),this,SLOT(onProcessOutput(int,QString,QString)));
-    m_AppInstaller->doTask(m_appxmler,m_sourceTagName,m_appdataPath,m_rtoolsTagName);
+    connect(m_appInstaller,SIGNAL(taskFinishSignal(int,int)),this,SLOT(onFinishedProcess(int,int)));
+    connect(m_appInstaller,SIGNAL(taskFinishSignal(int)),this,SLOT(onInstallAppFinished(int)));//onProcessFinished
+    connect(m_appInstaller,SIGNAL(taskErrorSignal(int,QString)),this,SLOT(onProcessError(int,QString)));
+    connect(m_appInstaller,SIGNAL(taskOutputSignal(int,QString,QString)),this,SLOT(onProcessOutput(int,QString,QString)));
+    m_appInstaller->doTask(m_appxmler,m_sourceTagName,m_appdataPath,m_expandPath+".zip");
 }
 
 void localInstallForm::hideInInstall()
@@ -500,13 +500,17 @@ void localInstallForm::onChooseXmlFile(int exitCode)
     // choose xml to get app's imformation
     if (exitCode!=0)
     {
-        QMessageBox::information(NULL, "Infomation", "the file can't be unzipped ", QMessageBox::Ok, QMessageBox::Ok);
+        QMessageBox::information(NULL, "Infomation", "The file can't be unzipped ", QMessageBox::Ok, QMessageBox::Ok);
         m_stats="";
     }
     else
     {
         QDir dir(m_expandPath);
         QFileInfoList xmlist = dir.entryInfoList(QStringList() << "*.xml");
+        if (xmlist.empty())
+        {
+            QMessageBox::information(NULL, "Infomation", "The zip file does't contains xml file. ", QMessageBox::Ok, QMessageBox::Ok);
+        }
         m_appxmler->parseXml(xmlist[0].filePath());
         m_appID=m_appxmler->getXmlMapElement("app_head_pakid");
     }

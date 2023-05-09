@@ -307,13 +307,13 @@ void urlInstallForm::onStartPkgInstall(int taskno)
 void urlInstallForm::onStartAppInstall(int taskno)
 {
     m_record->writeLine("pkg",m_RHome,true,true,m_appxmler->getXmlMapElement("install_localShiny_localShinyVersion"));
-    m_AppInstaller=new TaskInstallApp(this);
+    m_appInstaller=new TaskInstallApp(this);
     emit outputSignal("Begin to install APP.","Info");
-    connect(m_AppInstaller,SIGNAL(taskFinishSignal(int,int)),this,SLOT(onFinishedProcess(int,int)));
-    connect(m_AppInstaller,SIGNAL(taskFinishSignal(int)),this,SLOT(onInstallAppFinished(int)));//onProcessFinished
-    connect(m_AppInstaller,SIGNAL(taskErrorSignal(int,QString)),this,SLOT(onProcessError(int,QString)));
-    connect(m_AppInstaller,SIGNAL(taskOutputSignal(int,QString,QString)),this,SLOT(onProcessOutput(int,QString,QString)));
-    m_AppInstaller->doTask(m_appxmler,m_sourceTagName,m_appdataPath);
+    connect(m_appInstaller,SIGNAL(taskFinishSignal(int,int)),this,SLOT(onFinishedProcess(int,int)));
+    connect(m_appInstaller,SIGNAL(taskFinishSignal(int)),this,SLOT(onInstallAppFinished(int)));//onProcessFinished
+    connect(m_appInstaller,SIGNAL(taskErrorSignal(int,QString)),this,SLOT(onProcessError(int,QString)));
+    connect(m_appInstaller,SIGNAL(taskOutputSignal(int,QString,QString)),this,SLOT(onProcessOutput(int,QString,QString)));
+    m_appInstaller->doTask(m_appxmler,m_sourceTagName,m_appdataPath);
 }
 
 void urlInstallForm::hideInInstall()

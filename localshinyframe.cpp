@@ -43,6 +43,7 @@ void LocalShinyFrame::init()
 {
     // create url installer to Perform the operation of obtaining an app through a webpage or through xml document
     m_installform = new urlInstallForm();
+    m_localinstallform=new localInstallForm();
     connect(m_installform,SIGNAL(newpkgSignal(QString,QString,QString)),this,SLOT(addNewpkg(QString,QString,QString)));
     connect(m_installform,SIGNAL(outputSignal(QString,QString)),this,SLOT(onConsoleOutput(QString,QString)));
 
@@ -826,9 +827,9 @@ void LocalShinyFrame::onConsoleOutput(QString output, QString type)
 void LocalShinyFrame::onAutoInstall(QString url)
 {
     // Transfer the downloaded information to the installform
-    if(m_installform->m_stats=="running")
+    if(m_localinstallform->m_stats=="running"||m_installform->m_stats=="running")
     {
-        QMessageBox::critical(NULL, "Error", "Another app is installing", QMessageBox::Ok, QMessageBox::Ok);
+        QMessageBox::critical(NULL, "Error", "Another app is installing. ", QMessageBox::Ok, QMessageBox::Ok);
     }
     else
     {
@@ -848,16 +849,22 @@ void LocalShinyFrame::onCloseCurrentApp(QString appName)
 void LocalShinyFrame::onInstallAppsFromLocal()
 {
     // when install app from local action clicked creat a new installform
-    m_localinstallform=new localInstallForm();
-    connect(m_localinstallform,SIGNAL(newpkgSignal(QString,QString,QString)),this,SLOT(addNewpkg(QString,QString,QString)));
-    connect(m_localinstallform,SIGNAL(outputSignal(QString,QString)),this,SLOT(onConsoleOutput(QString,QString)));
-    connect(m_localinstallform,&localInstallForm::reloadSignal,[this]() {
-            m_webView->setHttpUserAgent();
-            m_webView->reload();
-    });
-    m_localinstallform->m_appdataPath = m_appdataPath;
-    m_localinstallform->setWindowModality(Qt::ApplicationModal);
-    m_localinstallform->show();
+    if(m_localinstallform->m_stats=="running"||m_installform->m_stats=="running")
+    {
+        QMessageBox::critical(NULL, "Error", "Another app is installing. ", QMessageBox::Ok, QMessageBox::Ok);
+    }
+    else
+    {
+        connect(m_localinstallform,SIGNAL(newpkgSignal(QString,QString,QString)),this,SLOT(addNewpkg(QString,QString,QString)));
+        connect(m_localinstallform,SIGNAL(outputSignal(QString,QString)),this,SLOT(onConsoleOutput(QString,QString)));
+        connect(m_localinstallform,&localInstallForm::reloadSignal,[this]() {
+                m_webView->setHttpUserAgent();
+                m_webView->reload();
+        });
+        m_localinstallform->m_appdataPath = m_appdataPath;
+        m_localinstallform->setWindowModality(Qt::ApplicationModal);
+        m_localinstallform->show();
+    }
 }
 
 void LocalShinyFrame::onChanTab(int index)

@@ -43,7 +43,7 @@ public:
     TaskRtoolsDownload* m_RtoolsDownloader;
     TaskRtoolsInstall* m_RtoolsInstaller;
     TaskInstallPkg* m_PkgInstaller;
-    TaskInstallApp* m_AppInstaller;
+    TaskInstallApp* m_appInstaller;
     RPathInput* m_RPathInput;
     QString m_appdataPath;
     QString m_rtoolsResource;
